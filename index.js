@@ -24,11 +24,6 @@ FgMagenta = "\x1b[35m"//
 FgCyan = "\x1b[36m"   //
 FgWhite = "\x1b[37m"  //
 ////////////////////////
-let nospamDS = []
-let nospamHP = []
-let nospamPe = []
-let nospamWB = []
-////////////////////////
 
 const bot = mineflayer.createBot({
     host: '', //IP of server
