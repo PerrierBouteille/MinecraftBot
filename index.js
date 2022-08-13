@@ -33,7 +33,7 @@ let nospamWB = []
 const bot = mineflayer.createBot({
     host: '', //IP of server
     username: 'Bot',  // minecraft pseudo
-    //password: '12345678' // minecraft password
+    //password: '12345678' // minecraft password | no pswd = crack
     // port: 25565,                // only set if you need a port
      version: "1.8.9",             // only set if you need a specific version or snapshot
     // auth: 'mojang'              // only set if you need microsoft auth, then set this to 'microsoft'
