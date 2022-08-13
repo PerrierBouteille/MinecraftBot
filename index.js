@@ -33,9 +33,9 @@ let nospamWB = []
 const bot = mineflayer.createBot({
     host: '', //IP of server
     username: 'Bot',  // minecraft pseudo
-    //password: '12345678' // minecraft password, comment out if you want to log into online-mode=false servers
-    // port: 25565,                // only set if you need a port that isn't 25565
-     version: "1.8.9",             // only set if you need a specific version or snapshot (ie: "1.8.9" or "1.16.5"), otherwise it's set automatically
+    //password: '12345678' // minecraft password
+    // port: 25565,                // only set if you need a port
+     version: "1.8.9",             // only set if you need a specific version or snapshot
     // auth: 'mojang'              // only set if you need microsoft auth, then set this to 'microsoft'
 })
 
@@ -75,13 +75,13 @@ bot.once("spawn", () => {
       const mcData = require('minecraft-data')(bot.version)
       const defaultMove = new Movements(bot, mcData)
 
-      defaultMove.canDig = false // Disable breaking of blocks when pathing 
+      defaultMove.canDig = false // Disable breaking of blocks
       defaultMove.scafoldingBlocks.push(mcData.itemsByName['sandstone','wool'].id)
       
     
       bot.viewer.on('blockClicked', (block, face, button) => {
         //console.log(button)
-        if (button !== 1) return // only right click
+        if (button !== 1) return
     
         const p = block.position.offset(0, 1, 0)
 
