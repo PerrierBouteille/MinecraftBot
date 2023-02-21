@@ -27,11 +27,11 @@ FgWhite = "\x1b[37m"  //
 
 const bot = mineflayer.createBot({
     host: '', //IP of server
-    username: 'Bot',  // minecraft pseudo
+    username: 'Bot',  // Minecraft Username
     //password: '12345678' // minecraft password | no pswd = crack
-    // port: 25565,                // only set if you need a port
-     version: "1.8.9",             // only set if you need a specific version or snapshot
-    // auth: 'mojang'              // only set if you need microsoft auth, then set this to 'microsoft'
+    // port: 25565,                // Only set if you need a port
+     version: "1.8.9",             // Only set if you need a specific version or snapshot
+    // auth: 'mojang'              // Only set if you need microsoft auth, then set this to 'microsoft'
 })
 
 const mcData = require('minecraft-data')(bot.version)
@@ -51,6 +51,7 @@ bot.once("spawn", () => {
     mineflayerViewer(bot, {port: 3001, viewDistance: 3 })
     bot.on('path_update', (r) => {
         const nodesPerTick = (r.visitedNodes * 50 / r.time).toFixed(2)
+        //Status of moves, sometime timeout or parial are didn't logs.
         if (r.status == "timeout") {
             console.log(FgMagenta + '[WebLogs] ' + FgWhite + `I can get there in ${r.path.length} moves. Computation took ${r.time.toFixed(2)} ms (${nodesPerTick} nodes/tick).` + FgRed + ` ${r.status}` + FgWhite)
         }
@@ -71,12 +72,11 @@ bot.once("spawn", () => {
       const defaultMove = new Movements(bot, mcData)
 
       defaultMove.canDig = false // Disable breaking of blocks
-      defaultMove.scafoldingBlocks.push(mcData.itemsByName['sandstone','wool'].id)
-      
+      defaultMove.scafoldingBlocks.push(mcData.itemsByName['sandstone','wool'].id) //Blocks with which he can build.
     
       bot.viewer.on('blockClicked', (block, face, button) => {
         //console.log(button)
-        if (button !== 1) return
+        if (button !== 1) return //Check if the button is wheel click.
     
         const p = block.position.offset(0, 1, 0)
 
@@ -92,6 +92,6 @@ bot.once("spawn", () => {
 
 bot.on('message', (message) => {
     chat = message.toString()
-    console.log(FgCyan + '[Chat]' + FgWhite + " " + chat)
+    console.log(FgCyan + '[Chat]' + FgWhite + " " + chat) //Logs minecraft chat.
     const chatviewer = new ChatMessage(chat)
 })
